@@ -1,9 +1,5 @@
 #!/bin/bash
 lastid=""
-HTTPS_PROXY=http://127.0.0.1:8123
-https_proxy=http://127.0.0.1:8123
-HTTP_PROXY=http://127.0.0.1:8123
-http_proxy=http://127.0.0.1:8123
 
 function geturls()
 {
@@ -39,7 +35,10 @@ if [[ "${ifmore}" == "true" ]]
 then
     lastid=$(echo ${json} | jq -r ".items[19].id" | sed -e 's/\"//g')
     if [[ -f debug ]]; then echo "${lastid}"; fi
-    downloadall ${1}
+    if [[ "${lastid}" != "null" ]]
+    then
+        downloadall ${1}
+    fi
 fi
 }
 
