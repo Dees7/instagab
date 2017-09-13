@@ -3,7 +3,7 @@ lastid=""
 
 function geturls()
 {
-urls=( $(echo ${json} | jq -r ".items[].images.standard_resolution.url, .items[].videos.standard_resolution.url" ) )
+urls=( $(echo ${json} | jq -r ".items[].carousel_media[]?.images.standard_resolution.url, .items[].carousel_media[]?.videos.standard_resolution.url, .items[].images.standard_resolution.url, .items[].videos.standard_resolution.url") )
 }
 
 function getjson()
